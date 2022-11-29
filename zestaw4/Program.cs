@@ -5,6 +5,26 @@
 int[] elo={1,4,35,4,6,434,4,1,76,43,43,656,33,11,11};
 double[] elo1={1,4,35,4,6,434,4,1,76,43,43,656,33,11,11};
 
+
+double GenRandom2(int minValue, int maxValue)
+{
+    Random rand = new Random();
+    return rand.Next(minValue, maxValue);
+}
+
+double[] GenRandomArray(int size, int minValue,int maxValue){
+    double[] tab= new double[size];
+    for (int i=0;i<size;i++){
+        tab[i]=GenRandom2(minValue,maxValue);
+    }
+    return tab;
+}
+
+foreach(double i in GenRandomArray(5,0,100)){
+    Console.Write(i+" ");
+}
+Console.Write("\n");
+
 // **************zadanie 1**************
 
 
@@ -289,6 +309,141 @@ double[] AddOnIndex (double[] tab, double num, int index){
 
 Console.Write("\n");
 foreach(double i in AddOnIndex(elo1, 5,2)){
+    Console.Write(i+" ");
+}
+Console.Write("\n");
+
+
+
+//******************zadanie 11 cd **********************
+//**** Bubble Sort
+double[] BubbleSort (double[] tab){
+    int n=tab.Length;
+    double temp;
+    bool swap=false;
+    for (int i=0;i<n-1;i++){
+        for(int j=0; j<n-1-i;j++){
+            if(tab[j]>tab[j+1]){
+                temp=tab[j];
+                tab[j]=tab[j+1];
+                tab[j+1]=temp;
+                swap=true;
+            }
+        }
+        if(!swap){
+            break;
+        }
+    }
+    return tab;
+
+}
+
+
+Console.Write("\n");
+foreach(double i in (elo1)){
+    Console.Write(i+" ");
+}
+Console.Write("\n");
+
+
+Console.Write("\n");
+foreach(double i in BubbleSort(GenRandomArray(10,0,100))){
+    Console.Write(i+" ");
+}
+Console.Write("\n");
+//*****quicksort
+double[] Qsort(double[] tab1, int minIndex, int maxIndex){
+    int i= minIndex;
+    int j= maxIndex;
+    var pivot= tab1[maxIndex];
+
+    while (i<j){
+
+        while(tab1[i]<pivot){
+            i++;
+        }
+        while (tab1[j]>pivot){
+            j--;
+        }
+        if (i<=j){
+            var temp=tab1[i];
+            tab1[i]=tab1[j];
+            tab1[j]=temp;
+            i++;
+            j--;
+        }
+    }
+
+    if (minIndex<j){
+        Qsort(tab1, minIndex, j);
+    }
+    if (i<maxIndex){
+        Qsort(tab1,i,maxIndex);
+    }
+    return tab1;
+
+}
+
+
+Console.Write("\n");
+foreach(double i in Qsort(GenRandomArray(10,0,100),0,9)){
+    Console.Write(i+" ");
+}
+Console.Write("\n");
+
+//**** Insertion Sort*********
+
+double[] InsertionSort (double[] tab1){
+    int size =tab1.Length;
+    for (int i=1; i<size;i++){
+        var current=tab1[i];
+
+        for (int j =i-1; j>=0; j--){
+            if (current<tab1[j]){
+                tab1[j+1]=tab1[j];
+                tab1[j]=current;
+            }
+            else{
+                break;
+            }
+        }
+    }
+    return tab1;
+}
+
+Console.Write("Insertion sort:\n");
+Console.Write("\n");
+foreach(double i in InsertionSort(GenRandomArray(10,0,100))){
+    Console.Write(i+" ");
+}
+Console.Write("\n");
+
+
+
+
+//***** Selection sort****
+
+double[] SelectionSort(double[] tab1){
+    int size=tab1.Length;
+    for (int i=0; i<size-1;i++){
+        var min=i;
+        for (int j=i+1;j<size;j++){
+            if(tab1[j]<tab1[min]){
+                min=j;
+            }
+        }
+    
+        var temp=tab1[min];
+        tab1[min]=tab1[i];
+        tab1[i]=temp;
+    }
+
+    return tab1;
+
+}
+
+Console.Write("\n");
+foreach(double i in SelectionSort(GenRandomArray(10,0,100))){
     Console.Write(i+" ");
 }
 Console.Write("\n");
