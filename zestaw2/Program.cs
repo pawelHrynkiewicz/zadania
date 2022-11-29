@@ -78,7 +78,35 @@
 
 
 // ***************** zadanie 4 ****************
-// nie kminie treści :(((((
+int Pierwsza (int ile){
+    int count=0;
+    int dzielna=2;
+    bool pierwsza;
+    while (true){
+        pierwsza=true;
+        for (int dzielnik=2; dzielnik<=Math.Sqrt(dzielna);dzielnik++){
+            if (dzielna%dzielnik==0){
+                pierwsza=false;
+            }
+        }
+        if (pierwsza){
+            count++;
+            if (count==ile){
+                return dzielna;
+            }
+        }
+        dzielna++;
+
+    }
+
+}
+
+
+
+for (int i=1;i<10;i++){
+    Console.WriteLine(Pierwsza(i));
+}
+
 
 
 // ******************* zadanie 5 i 6*******************
