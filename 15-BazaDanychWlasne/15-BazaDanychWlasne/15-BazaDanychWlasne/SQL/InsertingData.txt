@@ -1,0 +1,4 @@
+insert into Students values('Kowalski', 'Andrzej', 'Biology', 3, 3.21)
+insert into Students values('Nowak', 'Antoni', 'Physics', 1, 2.21)
+insert into Students values('Boguscka', 'Klaudia', 'Math', 2, 3.45)
+

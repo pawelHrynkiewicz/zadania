@@ -279,7 +279,7 @@ double[] Squeeze(double[] array1)
     int size = array1.Length; // rozmiar tablic array1 i array2
     // array2 to tablica przejciowa - wyrazy juz nie beda sie powtarzac, ale bedzie miala 
     // rozmiar tablicy array1 (czyli moze byc za duza), bo musze podac wielkos przy deklaracji
-    double[] array2 = new double[size1];
+    double[] array2 = new double[size];
     array2[0] = array1[0]; // przekazuej pierwasza wartosc
     var NumbersInArray2 = 1; // tyle liczb mamy w array2
     var bylo = false;
@@ -314,10 +314,49 @@ double[] Squeeze(double[] array1)
     }
     return array3;
 }
+
+double[] AddToArray(double[] array, double newValue)
+{
+    var result = new double[array.Length + 1];
+
+    for (var i = 0; i < array.Length; i++)
+    {
+        result[i] = array[i];
+    }
+
+    result[result.Length - 1] = newValue;
+
+    return result;
+}
+
+double[] Squeeze2(double[] array)
+{
+    // zmienna ma tylko info JAKI TYP ma byc w srodku
+    // np. double[] dlugosci 1 jest tym samym typem do double[] 10
+    var result = new double[] { array[0] };
+
+    for (var i = 1; i < array.Length; i++)
+    {
+        if (!result.Contains(array[i]))
+        {
+            result = AddToArray(result, array[i]);
+        }
+    }
+
+    return result;
+}
+
 string result = string.Join(' ', array1);
 string result7 = string.Join(' ', Squeeze(array1));
 Console.WriteLine(result);
 Console.WriteLine(result7);
+
+System.Console.WriteLine("---- ZADANIE 8");
+Console.WriteLine(string.Join("; ", array1));
+System.Console.WriteLine(string.Join("; ", Squeeze2(array1)));
+System.Console.WriteLine("----");
+
+
 // **************zadanie 9******************888
 
 double[] AddAtBeginnig(double[] array, double num)
